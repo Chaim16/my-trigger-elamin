@@ -39,6 +39,5 @@ public class EmailVo {
     @NotBlank
     private String subject;
 
-    @NotBlank
     private String content;
 }

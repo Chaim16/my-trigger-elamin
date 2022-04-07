@@ -43,7 +43,7 @@ public class ExecuteShellUtil {
 			session = jsch.getSession(username, ipAddress, port);
 			session.setPassword(password);
 			session.setConfig("StrictHostKeyChecking", "no");
-			session.connect(3000);
+			session.connect(6000);
 		} catch (Exception e) {
 			log.error(e.getMessage(),e);
 		}
