@@ -16,14 +16,13 @@
 package me.zhengjie.modules.trigger.service.dto;
 
 import lombok.Data;
-import java.sql.Timestamp;
 import java.util.List;
 import me.zhengjie.annotation.Query;
 
 /**
 * @website https://el-admin.vip
 * @author yuqingming
-* @date 2022-01-23
+* @date 2022-04-09
 **/
 @Data
 public class TriggerJobQueryCriteria{
@@ -32,14 +31,35 @@ public class TriggerJobQueryCriteria{
     @Query
     private Long id;
 
-    /** 模糊 */
-    @Query(type = Query.Type.INNER_LIKE)
+    /** 精确 */
+    @Query
     private String status;
+
+    /** 精确 */
+    @Query
+    private Integer remove;
 
     /** 模糊 */
     @Query(type = Query.Type.INNER_LIKE)
     private String callName;
-    /** BETWEEN */
-    @Query(type = Query.Type.BETWEEN)
-    private List<Timestamp> triggerTime;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String callData;
+
+    /** 精确 */
+    @Query
+    private String callType;
+
+    /** 模糊 */
+    @Query(type = Query.Type.INNER_LIKE)
+    private String callHost;
+
+    /** 精确 */
+    @Query
+    private String cron;
+
+    /** 精确 */
+    @Query
+    private Long app;
 }

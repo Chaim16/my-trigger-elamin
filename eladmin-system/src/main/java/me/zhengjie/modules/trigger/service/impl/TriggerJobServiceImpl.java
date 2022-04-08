@@ -41,7 +41,7 @@ import java.util.LinkedHashMap;
 * @website https://el-admin.vip
 * @description 服务实现
 * @author yuqingming
-* @date 2022-01-23
+* @date 2022-04-09
 **/
 @Service
 @RequiredArgsConstructor
@@ -103,7 +103,7 @@ public class TriggerJobServiceImpl implements TriggerJobService {
             map.put("回调数据", triggerJob.getCallData());
             map.put("回调类型", triggerJob.getCallType());
             map.put("回调主机", triggerJob.getCallHost());
-            map.put("表达式", triggerJob.getCron());
+            map.put("CRON", triggerJob.getCron());
             map.put("创建时间", triggerJob.getCreateTime());
             map.put("修改时间", triggerJob.getModifyTime());
             map.put("应用id", triggerJob.getApp());

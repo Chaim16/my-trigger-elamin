@@ -31,7 +31,7 @@ import java.io.Serializable;
 * @website https://el-admin.vip
 * @description /
 * @author yuqingming
-* @date 2022-01-23
+* @date 2022-04-09
 **/
 @Entity
 @Data
@@ -41,11 +41,10 @@ public class TriggerJob implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @ApiModelProperty(value = "id")
+    @ApiModelProperty(value = "任务ID")
     private Long id;
 
-    @Column(name = "status",nullable = false)
-    @NotBlank
+    @Column(name = "status")
     @ApiModelProperty(value = "状态")
     private String status;
 
@@ -53,8 +52,7 @@ public class TriggerJob implements Serializable {
     @ApiModelProperty(value = "调度时间")
     private Timestamp triggerTime;
 
-    @Column(name = "remove",nullable = false)
-    @NotNull
+    @Column(name = "remove")
     @ApiModelProperty(value = "是否删除")
     private Integer remove;
 
@@ -67,19 +65,17 @@ public class TriggerJob implements Serializable {
     @ApiModelProperty(value = "回调数据")
     private String callData;
 
-    @Column(name = "call_type",nullable = false)
-    @NotBlank
+    @Column(name = "call_type")
     @ApiModelProperty(value = "回调类型")
     private String callType;
 
-    @Column(name = "call_host",nullable = false)
-    @NotBlank
+    @Column(name = "call_host")
     @ApiModelProperty(value = "回调主机")
     private String callHost;
 
     @Column(name = "cron",nullable = false)
     @NotBlank
-    @ApiModelProperty(value = "表达式")
+    @ApiModelProperty(value = "CRON")
     private String cron;
 
     @Column(name = "create_time")
@@ -92,7 +88,8 @@ public class TriggerJob implements Serializable {
     @ApiModelProperty(value = "修改时间")
     private Timestamp modifyTime;
 
-    @Column(name = "app")
+    @Column(name = "app",nullable = false)
+    @NotNull
     @ApiModelProperty(value = "应用id")
     private Long app;
 

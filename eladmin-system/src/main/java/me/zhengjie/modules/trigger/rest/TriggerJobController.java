@@ -19,6 +19,7 @@ import me.zhengjie.annotation.Log;
 import me.zhengjie.modules.trigger.domain.TriggerJob;
 import me.zhengjie.modules.trigger.service.TriggerJobService;
 import me.zhengjie.modules.trigger.service.dto.TriggerJobQueryCriteria;
+import me.zhengjie.utils.CronUtil;
 import org.springframework.data.domain.Pageable;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,12 +29,16 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.*;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
 
 /**
 * @website https://el-admin.vip
 * @author yuqingming
-* @date 2022-01-23
+* @date 2022-04-09
 **/
 @RestController
 @RequiredArgsConstructor
@@ -42,6 +47,8 @@ import javax.servlet.http.HttpServletResponse;
 public class TriggerJobController {
 
     private final TriggerJobService triggerJobService;
+
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Log("导出数据")
     @ApiOperation("导出数据")
@@ -63,15 +70,34 @@ public class TriggerJobController {
     @Log("新增api/triggerJob")
     @ApiOperation("新增api/triggerJob")
     @PreAuthorize("@el.check('triggerJob:add')")
-    public ResponseEntity<Object> createTriggerJob(@Validated @RequestBody TriggerJob resources){
+    public ResponseEntity<Object> createTriggerJob(@Validated @RequestBody TriggerJob resources) throws Exception {
+        resources.setStatus("wait");
+        Date time = null;
+        if (CronUtil.checkCronOneTime(resources.getCron())) {
+            time = CronUtil.getOnceTime(resources.getCron());
+        } else {
+            time = CronUtil.getLoopTime(resources.getCron(), System.currentTimeMillis());
+        }
+        resources.setTriggerTime(new Timestamp(time.getTime()));
+        resources.setRemove(0);
+        resources.setCreateTime(new Timestamp(System.currentTimeMillis()));
         return new ResponseEntity<>(triggerJobService.create(resources),HttpStatus.CREATED);
     }
+
 
     @PutMapping
     @Log("修改api/triggerJob")
     @ApiOperation("修改api/triggerJob")
     @PreAuthorize("@el.check('triggerJob:edit')")
-    public ResponseEntity<Object> updateTriggerJob(@Validated @RequestBody TriggerJob resources){
+    public ResponseEntity<Object> updateTriggerJob(@Validated @RequestBody TriggerJob resources) throws Exception {
+        Date time = null;
+        if (CronUtil.checkCronOneTime(resources.getCron())) {
+            time = CronUtil.getOnceTime(resources.getCron());
+        } else {
+            time = CronUtil.getLoopTime(resources.getCron(), System.currentTimeMillis());
+        }
+        resources.setTriggerTime(new Timestamp(time.getTime()));
+        resources.setCreateTime(new Timestamp(System.currentTimeMillis()));
         triggerJobService.update(resources);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

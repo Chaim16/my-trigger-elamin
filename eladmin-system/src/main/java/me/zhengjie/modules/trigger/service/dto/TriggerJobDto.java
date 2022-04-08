@@ -23,11 +23,12 @@ import java.io.Serializable;
 * @website https://el-admin.vip
 * @description /
 * @author yuqingming
-* @date 2022-01-23
+* @date 2022-04-09
 **/
 @Data
 public class TriggerJobDto implements Serializable {
 
+    /** 任务ID */
     private Long id;
 
     /** 状态 */
@@ -51,7 +52,7 @@ public class TriggerJobDto implements Serializable {
     /** 回调主机 */
     private String callHost;
 
-    /** 表达式 */
+    /** CRON */
     private String cron;
 
     /** 创建时间 */

@@ -24,7 +24,7 @@ import org.mapstruct.ReportingPolicy;
 /**
 * @website https://el-admin.vip
 * @author yuqingming
-* @date 2022-01-23
+* @date 2022-04-09
 **/
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface TriggerJobMapper extends BaseMapper<TriggerJobDto, TriggerJob> {

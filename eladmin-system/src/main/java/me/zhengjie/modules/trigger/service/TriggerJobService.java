@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 * @website https://el-admin.vip
 * @description 服务接口
 * @author yuqingming
-* @date 2022-01-23
+* @date 2022-04-09
 **/
 public interface TriggerJobService {
 

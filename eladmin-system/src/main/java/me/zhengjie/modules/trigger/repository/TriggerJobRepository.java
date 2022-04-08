@@ -22,7 +22,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 /**
 * @website https://el-admin.vip
 * @author yuqingming
-* @date 2022-01-23
+* @date 2022-04-09
 **/
 public interface TriggerJobRepository extends JpaRepository<TriggerJob, Long>, JpaSpecificationExecutor<TriggerJob> {
 }
