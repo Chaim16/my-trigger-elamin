@@ -44,7 +44,8 @@ public class TriggerJob implements Serializable {
     @ApiModelProperty(value = "任务ID")
     private Long id;
 
-    @Column(name = "status")
+    @Column(name = "status",nullable = false)
+    @NotBlank
     @ApiModelProperty(value = "状态")
     private String status;
 
@@ -52,7 +53,8 @@ public class TriggerJob implements Serializable {
     @ApiModelProperty(value = "调度时间")
     private Timestamp triggerTime;
 
-    @Column(name = "remove")
+    @Column(name = "remove",nullable = false)
+    @NotNull
     @ApiModelProperty(value = "是否删除")
     private Integer remove;
 
@@ -65,7 +67,8 @@ public class TriggerJob implements Serializable {
     @ApiModelProperty(value = "回调数据")
     private String callData;
 
-    @Column(name = "call_type")
+    @Column(name = "call_type",nullable = false)
+    @NotBlank
     @ApiModelProperty(value = "回调类型")
     private String callType;
 

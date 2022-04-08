@@ -30,8 +30,6 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.*;
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,8 +45,6 @@ import javax.servlet.http.HttpServletResponse;
 public class TriggerJobController {
 
     private final TriggerJobService triggerJobService;
-
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     @Log("导出数据")
     @ApiOperation("导出数据")
@@ -83,7 +79,6 @@ public class TriggerJobController {
         resources.setCreateTime(new Timestamp(System.currentTimeMillis()));
         return new ResponseEntity<>(triggerJobService.create(resources),HttpStatus.CREATED);
     }
-
 
     @PutMapping
     @Log("修改api/triggerJob")

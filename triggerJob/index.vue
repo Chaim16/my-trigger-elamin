@@ -29,13 +29,25 @@
       <!--表单组件-->
       <el-dialog :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="500px">
         <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
+          <el-form-item label="状态" prop="status">
+            <el-select v-model="form.status" filterable placeholder="请选择">
+              <el-option
+                v-for="item in dict.trigger_job_status"
+                :key="item.id"
+                :label="item.label"
+                :value="item.value" />
+            </el-select>
+          </el-form-item>
+          <el-form-item label="是否删除" prop="remove">
+            <el-radio v-model="form.remove" v-for="item in dict.trigger_job_remove" :key="item.id" :label="item.value">{{ item.label }}</el-radio>
+          </el-form-item>
           <el-form-item label="回调名称" prop="callName">
             <el-input v-model="form.callName" style="width: 370px;" />
           </el-form-item>
           <el-form-item label="回调数据">
             <el-input v-model="form.callData" style="width: 370px;" />
           </el-form-item>
-          <el-form-item label="回调类型">
+          <el-form-item label="回调类型" prop="callType">
             <el-radio v-model="form.callType" v-for="item in dict.call_type" :key="item.id" :label="item.value">{{ item.label }}</el-radio>
           </el-form-item>
           <el-form-item label="回调主机">
@@ -122,8 +134,17 @@ export default {
         del: ['admin', 'triggerJob:del']
       },
       rules: {
+        status: [
+          { required: true, message: '状态不能为空', trigger: 'blur' }
+        ],
+        remove: [
+          { required: true, message: '是否删除不能为空', trigger: 'blur' }
+        ],
         callName: [
           { required: true, message: '回调名称不能为空', trigger: 'blur' }
+        ],
+        callType: [
+          { required: true, message: '回调类型不能为空', trigger: 'blur' }
         ],
         cron: [
           { required: true, message: 'CRON不能为空', trigger: 'blur' }
