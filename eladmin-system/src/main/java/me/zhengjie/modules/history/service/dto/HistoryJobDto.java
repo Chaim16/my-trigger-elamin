@@ -28,7 +28,7 @@ import java.io.Serializable;
 @Data
 public class HistoryJobDto implements Serializable {
 
-    /** ID */
+    /** 任务ID */
     private Long id;
 
     /** 调度时间 */

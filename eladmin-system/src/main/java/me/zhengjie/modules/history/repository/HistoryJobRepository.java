@@ -16,8 +16,13 @@
 package me.zhengjie.modules.history.repository;
 
 import me.zhengjie.modules.history.domain.HistoryJob;
+import org.apache.poi.ss.formula.functions.T;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.lang.Nullable;
 
 /**
 * @website https://el-admin.vip

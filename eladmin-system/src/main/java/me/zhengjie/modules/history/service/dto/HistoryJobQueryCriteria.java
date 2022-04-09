@@ -16,7 +16,6 @@
 package me.zhengjie.modules.history.service.dto;
 
 import lombok.Data;
-import java.sql.Timestamp;
 import java.util.List;
 import me.zhengjie.annotation.Query;
 
@@ -55,13 +54,4 @@ public class HistoryJobQueryCriteria{
     /** 精确 */
     @Query
     private Long app;
-    /** BETWEEN */
-    @Query(type = Query.Type.BETWEEN)
-    private List<Timestamp> triggerTime;
-    /** BETWEEN */
-    @Query(type = Query.Type.BETWEEN)
-    private List<Timestamp> createTime;
-    /** BETWEEN */
-    @Query(type = Query.Type.BETWEEN)
-    private List<Timestamp> modifyTime;
 }

@@ -38,16 +38,14 @@ public class HistoryJob implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @ApiModelProperty(value = "ID")
+    @ApiModelProperty(value = "任务ID")
     private Long id;
 
-    @Column(name = "trigger_time",nullable = false)
-    @NotNull
+    @Column(name = "trigger_time")
     @ApiModelProperty(value = "调度时间")
     private Timestamp triggerTime;
 
-    @Column(name = "call_name",nullable = false)
-    @NotBlank
+    @Column(name = "call_name")
     @ApiModelProperty(value = "回调名称")
     private String callName;
 
@@ -55,8 +53,7 @@ public class HistoryJob implements Serializable {
     @ApiModelProperty(value = "回调数据")
     private String callData;
 
-    @Column(name = "call_type",nullable = false)
-    @NotBlank
+    @Column(name = "call_type")
     @ApiModelProperty(value = "回调方式")
     private String callType;
 
@@ -64,8 +61,7 @@ public class HistoryJob implements Serializable {
     @ApiModelProperty(value = "回调主机")
     private String callHost;
 
-    @Column(name = "cron",nullable = false)
-    @NotBlank
+    @Column(name = "cron")
     @ApiModelProperty(value = "CRON")
     private String cron;
 
@@ -77,8 +73,7 @@ public class HistoryJob implements Serializable {
     @ApiModelProperty(value = "修改时间")
     private Timestamp modifyTime;
 
-    @Column(name = "app",nullable = false)
-    @NotNull
+    @Column(name = "app")
     @ApiModelProperty(value = "应用名")
     private Long app;
 

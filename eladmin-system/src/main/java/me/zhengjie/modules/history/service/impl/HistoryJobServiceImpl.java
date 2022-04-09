@@ -51,8 +51,8 @@ public class HistoryJobServiceImpl implements HistoryJobService {
     private final HistoryJobMapper historyJobMapper;
 
     @Override
-    public Map<String,Object> queryAll(HistoryJobQueryCriteria criteria, Pageable pageable){
-        Page<HistoryJob> page = historyJobRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root,criteria,criteriaBuilder),pageable);
+    public Map<String,Object> queryAll(HistoryJobQueryCriteria criteria, Pageable pageable) {
+        Page<HistoryJob> page = historyJobRepository.findAll((root, criteriaQuery, criteriaBuilder) -> QueryHelp.getPredicate(root, criteria, criteriaBuilder), pageable);
         return PageUtil.toPage(page.map(historyJobMapper::toDto));
     }
 
