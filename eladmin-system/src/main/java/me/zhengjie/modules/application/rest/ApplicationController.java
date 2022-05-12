@@ -56,6 +56,7 @@ public class ApplicationController {
     @ApiOperation("查询api/application")
     @PreAuthorize("@el.check('application:list')")
     public ResponseEntity<Object> queryApplication(ApplicationQueryCriteria criteria, Pageable pageable){
+//        criteria.setOwner();
         return new ResponseEntity<>(applicationService.queryAll(criteria,pageable),HttpStatus.OK);
     }
 

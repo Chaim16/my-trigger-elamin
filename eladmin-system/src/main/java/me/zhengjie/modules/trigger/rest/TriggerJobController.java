@@ -54,6 +54,14 @@ public class TriggerJobController {
         triggerJobService.download(triggerJobService.queryAll(criteria), response);
     }
 
+    @Log("手动调度")
+    @ApiOperation("手动调度")
+    @PostMapping(value = "/trigger")
+    @PreAuthorize("@el.check('triggerJob:list')")
+    public ResponseEntity<Object> triggerJob(@RequestBody Long id) {
+        return new ResponseEntity<>(triggerJobService.trigger(id), HttpStatus.OK);
+    }
+
     @GetMapping
     @Log("查询api/triggerJob")
     @ApiOperation("查询api/triggerJob")

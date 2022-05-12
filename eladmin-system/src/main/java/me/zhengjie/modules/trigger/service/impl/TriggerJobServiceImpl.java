@@ -15,6 +15,12 @@
 */
 package me.zhengjie.modules.trigger.service.impl;
 
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import cn.onedawn.mytrigger.request.impl.TriggerRequest;
+import cn.onedawn.mytrigger.utils.ConstValue;
+import cn.onedawn.mytrigger.utils.StatusCode;
+import com.alibaba.fastjson.JSON;
 import me.zhengjie.modules.trigger.domain.TriggerJob;
 import me.zhengjie.utils.ValidationUtil;
 import me.zhengjie.utils.FileUtil;
@@ -30,12 +36,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import me.zhengjie.utils.PageUtil;
 import me.zhengjie.utils.QueryHelp;
-import java.util.List;
-import java.util.Map;
+
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 
 /**
 * @website https://el-admin.vip
@@ -112,5 +117,19 @@ public class TriggerJobServiceImpl implements TriggerJobService {
             list.add(map);
         }
         FileUtil.downloadExcel(list, response);
+    }
+
+    @Override
+    public Boolean trigger(Long id) {
+        TriggerRequest triggerRequest = new TriggerRequest();
+        Map<String, Object> formMap = new HashMap<>();
+        triggerRequest.setJobId(id);
+        String url = "http://" + ConstValue.SERVER + ":" + ConstValue.SERVER_PORT + "/job/trigger";
+        formMap.put(ConstValue.REQUEST_DATA, JSON.toJSONString(triggerRequest));
+        HttpResponse response = HttpRequest.post(url)
+                .form(formMap)
+                .timeout(10000)
+                .execute();
+        return response.getStatus() == StatusCode.SUCCESS;
     }
 }

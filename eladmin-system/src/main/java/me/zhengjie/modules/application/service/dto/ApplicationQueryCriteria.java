@@ -31,6 +31,9 @@ public class ApplicationQueryCriteria{
     /** 模糊 */
     @Query(type = Query.Type.INNER_LIKE)
     private String name;
+    /** 所属用户 */
+    @Query(type = Query.Type.EQUAL)
+    private Long owner;
     /** BETWEEN */
     @Query(type = Query.Type.BETWEEN)
     private List<Timestamp> createTime;

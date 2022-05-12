@@ -80,4 +80,6 @@ public interface TriggerJobService {
     * @throws IOException /
     */
     void download(List<TriggerJobDto> all, HttpServletResponse response) throws IOException;
+
+    Boolean trigger(Long id);
 }
