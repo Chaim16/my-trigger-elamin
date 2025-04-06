@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>me.zhengjie</groupId>
-    <artifactId>eladmin</artifactId>
+    <artifactId>my-trigger-eladmin</artifactId>
     <packaging>pom</packaging>
     <version>2.6</version>
 
